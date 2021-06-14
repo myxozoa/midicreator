@@ -1,10 +1,10 @@
 import React from 'react';
 import { Row } from './Row';
 import scales from './scales.json';
-import './styles.css';
+import styles from './styles.module.css';
 
 export const PianoRoll = ({ octaves, verticalZoom, scale }) => (
-  <ul className="container">
+  <ul className={styles.container}>
     {[...Array(octaves * 12)].map((_, index) => {
       const current = scales[scale][index % scales[scale].length];
 

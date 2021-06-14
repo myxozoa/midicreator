@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './styles.module.css';
 
 export const Toolbar = ({ bpm, setBpm, octaves, setOctaves, verticalZoom, setVericalZoom, horizontalZoom, setHorizontalZoom }) => (
-  <ul>
+  <ul className={styles.toolbar}>
     <label htmlFor="bpm">BPM:</label>
     <input type="number" id="bpm" name="bpm" min="50" max="300" value={bpm} onChange={(e) => setBpm(e.target.value)} />
     <label htmlFor="octaves">Octaves:</label>
