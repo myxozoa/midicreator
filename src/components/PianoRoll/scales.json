@@ -1,0 +1,15 @@
+{
+  "fullOctave": [{ "note": "C", "natural": true },
+                 { "note": "C#", "natural": false }, 
+                 { "note": "D", "natural": true }, 
+                 { "note": "D#", "natural": false },
+                 { "note": "E", "natural": true }, 
+                 { "note": "F", "natural": true }, 
+                 { "note": "F#", "natural": false },
+                 { "note": "G", "natural": true }, 
+                 { "note": "G#", "natural": false }, 
+                 { "note": "A", "natural": true },
+                 { "note": "A#", "natural": false }, 
+                 { "note": "B", "natural": true }
+                ]
+}

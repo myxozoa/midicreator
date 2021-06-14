@@ -9,11 +9,12 @@ export const Editor = () => {
   const [verticalZoom, setVericalZoom] = useState(1);
   const [horizontalZoom, setHorizontalZoom] = useState(1);
   const [notes, setNotes] = useState([]);
+  const [scale, setScale] = useState("fullOctave");
 
   return (
     <div>
       <Toolbar {...{ bpm, setBpm, octaves, setOctaves, verticalZoom, setVericalZoom, horizontalZoom, setHorizontalZoom }} />
-      <PianoRoll {...{ octaves, notes }} />
+      <PianoRoll {...{ octaves, notes, verticalZoom, scale }} />
     </div>
   );
 }
