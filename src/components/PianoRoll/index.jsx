@@ -1,11 +1,14 @@
 import React from 'react';
-import { Keys } from './Keys';
+import { Row } from './Row';
+import scales from './scales.json';
 import './styles.css';
 
 export const PianoRoll = ({ octaves, verticalZoom, scale }) => (
-  <div className="container">
-    <Keys octaves={octaves} heights={verticalZoom * 20} scale={scale} />
-    <div className="sheet">
-    </div>
-  </div>
+  <ul className="container">
+    {[...Array(octaves * 12)].map((_, index) => {
+      const current = scales[scale][index % scales[scale].length];
+
+      return <Row height={verticalZoom * 20} key={current.note + index} octave={Math.floor(index / scales[scale].length)} note={current.note} isBlack={!current.natural} />;
+    })}
+  </ul>
 );

@@ -1,0 +1,9 @@
+.row {
+  background-color: #acacac;
+  display: flex;
+  flex-direction: row;
+}
+
+.row:hover {
+  background-color: #c0c0c0;
+}

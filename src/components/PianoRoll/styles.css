@@ -1,11 +1,5 @@
-.sheet {
-  width: 100px;
-  min-height: 100%;
-  background: grey;
-}
-
 .container {
   height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
