@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Sheet } from './components/Sheet';
-import { Toolbar } from './components/Toolbar';
+import { Sheet } from '../Sheet';
+import { Toolbar } from '../Toolbar';
 
 export const Editor = () => {
   const [selected, setSelected] = useState(null);
