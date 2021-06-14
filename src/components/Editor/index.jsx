@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PianoRoll } from '../PianoRoll';
 import { Toolbar } from '../Toolbar';
+import { Note } from '../Note';
 
 export const Editor = () => {
   const [selected, setSelected] = useState([]);
@@ -15,6 +16,7 @@ export const Editor = () => {
     <div>
       <Toolbar {...{ bpm, setBpm, octaves, setOctaves, verticalZoom, setVericalZoom, horizontalZoom, setHorizontalZoom }} />
       <PianoRoll {...{ octaves, notes, verticalZoom, scale }} />
+      {notes.map(note => <Note {...note} />)}
     </div>
   );
 }
