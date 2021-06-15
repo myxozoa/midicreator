@@ -14,7 +14,7 @@ export const Row = ({ height, isBlack, octave, note, notes, setNotes }) => {
   }
 
   return (
-    <div onDoubleClick={onClick} style={{ height }} className={styles.row}>
+    <div onClick={onClick} style={{ height }} className={styles.row}>
       <Key isBlack={isBlack} note={note} octave={octave} />
       <div ref={row} id={note + octave + 'sheet'}>
 

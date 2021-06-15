@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PianoRoll } from '../PianoRoll';
 import { Toolbar } from '../Toolbar';
 import { Note } from '../Note';
@@ -19,7 +19,7 @@ export const Editor = () => {
       <div className={styles.scroll}>
         <PianoRoll {...{ octaves, notes, verticalZoom, scale, setNotes }} />
         <div className={styles.notes}>
-          {notes.map(note => <Note {...note} height={verticalZoom * 20} scale={scale} />)}
+          {notes.map(note => <Note key={`${note.note}${note.octave}${note.start}`} {...note} height={verticalZoom * 20} scale={scale} notes={notes} setNotes={setNotes} />)}
         </div>
       </div>
     </div>
