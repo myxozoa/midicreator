@@ -10,15 +10,15 @@ export const Row = ({ height, isBlack, octave, note, notes, setNotes }) => {
     const rect = row.current.getBoundingClientRect();
     const xOffset = event.clientX - rect.left;
 
+    if (xOffset < 0) return;
+
     setNotes([...notes, new Note(note, octave, xOffset, 10)]);
   }
 
   return (
     <div onClick={onClick} style={{ height }} className={styles.row}>
       <Key isBlack={isBlack} note={note} octave={octave} />
-      <div ref={row} id={note + octave + 'sheet'}>
-
-      </div>
+      <div ref={row} id={note + octave + 'sheet'} />
     </div>
   )
 };

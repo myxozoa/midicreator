@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PianoRoll } from '../PianoRoll';
 import { Toolbar } from '../Toolbar';
 import { Note } from '../Note';
+import { KeyPress } from '../../utils';
 import styles from './styles.module.css';
 
 export const Editor = () => {
@@ -19,7 +20,26 @@ export const Editor = () => {
       <div className={styles.scroll}>
         <PianoRoll {...{ octaves, notes, verticalZoom, scale, setNotes }} />
         <div className={styles.notes}>
-          {notes.map(note => <Note key={`${note.note}${note.octave}${note.start}`} {...note} height={verticalZoom * 20} scale={scale} notes={notes} setNotes={setNotes} />)}
+          {notes.map(note => <Note key={`${note.note}${note.octave}${note.start}`} {...note} 
+                                   height={verticalZoom * 20} 
+                                   scale={scale} 
+                                   removeNote={() => setNotes(notes.filter(item => !((item.note === note.note) && (item.octave === note.octave) && (item.start === note.start))))}
+                                   isSelected={selected.find(item => ((item.note === note.note) && (item.octave === note.octave) && (item.start === note.start)))}
+                                   select={() => {
+                                     if (KeyPress.isKeyPressed('Control') || KeyPress.isKeyPressed('Shift')) {
+                                      setSelected([...selected, note]);
+                                     } else {
+                                      setSelected([note]);
+                                     }
+                                   }} 
+                                   deselect={() => {
+                                    if (KeyPress.isKeyPressed('Control') || KeyPress.isKeyPressed('Shift')) {
+                                     setSelected(selected.filter(item => !((item.note === note.note) && (item.octave === note.octave) && (item.start === note.start))))
+                                    } else {
+                                      setSelected([]);
+                                    }
+                                   }}
+                                   />)}
         </div>
       </div>
     </div>

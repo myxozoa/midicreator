@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 export const PianoRoll = ({ octaves, verticalZoom, scale, setNotes, notes }) => (
   <ul className={styles.container}>
-    {[...Array(octaves * 12)].map((_, index) => {
+    {[...Array(octaves * scales[scale].length)].map((_, index) => {
       const current = scales[scale][index % scales[scale].length];
 
       return <Row height={verticalZoom * 20} 

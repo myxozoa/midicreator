@@ -1,0 +1,19 @@
+.note {
+  pointer-events: auto;
+  background: red;
+  position: absolute;
+  user-select: none;
+  display: flex;
+}
+
+.handle {
+  width: 5px;
+  min-height: 100%;
+  background: blue;
+  cursor: col-resize;
+}
+
+.body {
+  flex-grow: 1;
+  cursor: pointer;
+}
