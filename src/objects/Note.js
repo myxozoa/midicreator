@@ -1,7 +1,9 @@
 export class Note {
-  constructor(start, end, velocity = 128) {
+  constructor(note, octave, start, duration, velocity = 128) {
+    this.note = note;
     this.start = start;
-    this.end = end;
+    this.duration = duration;
     this.velocity = velocity;
+    this.octave = octave;
   }
 }
