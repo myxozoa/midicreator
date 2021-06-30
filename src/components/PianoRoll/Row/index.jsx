@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react';
-import { Key } from '../Key';
-import { Note } from '../../../objects/Note';
-import styles from './styles.module.css';
+import React, { useRef, useEffect } from "react";
+import { Key } from "../Key";
+import { Note } from "../../../objects/Note";
+import styles from "./styles.module.css";
 
 export const Row = ({ height, isBlack, octave, note, notes, setNotes }) => {
   const row = useRef(null);
@@ -13,12 +13,12 @@ export const Row = ({ height, isBlack, octave, note, notes, setNotes }) => {
     if (xOffset < 0) return;
 
     setNotes([...notes, new Note(note, octave, xOffset, 10)]);
-  }
+  };
 
   return (
-    <div onClick={onClick} style={{ height }} className={styles.row}>
+    <div onClick={onClick} data-isBlack={isBlack} style={{ height }} className={styles.row}>
       <Key isBlack={isBlack} note={note} octave={octave} />
-      <div ref={row} id={note + octave + 'sheet'} />
+      <div ref={row} id={note + octave + "sheet"} />
     </div>
-  )
+  );
 };

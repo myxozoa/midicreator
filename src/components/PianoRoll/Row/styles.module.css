@@ -1,7 +1,11 @@
 .row {
-  background-color: #acacac;
+  background-color: #a7a7a7;
   display: flex;
   flex-direction: row;
+}
+
+.row[data-isBlack="true"] {
+  background-color: #979797;
 }
 
 .row:hover {

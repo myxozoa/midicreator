@@ -1,19 +1,21 @@
 .note {
   pointer-events: auto;
-  background: red;
+  background: #fe182e;
   position: absolute;
   user-select: none;
   display: flex;
 }
 
 .handle {
-  width: 5px;
+  width: 3px;
   min-height: 100%;
-  background: blue;
+  background: black;
   cursor: col-resize;
 }
 
 .body {
   flex-grow: 1;
+  display: grid;
+  place-items: center;
   cursor: pointer;
 }
