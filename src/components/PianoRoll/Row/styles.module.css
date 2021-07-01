@@ -4,7 +4,7 @@
   flex-direction: row;
 }
 
-.row[data-isBlack="true"] {
+.row[data-isblack="true"] {
   background-color: #979797;
 }
 

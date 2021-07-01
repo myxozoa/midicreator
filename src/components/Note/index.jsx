@@ -1,31 +1,72 @@
-import React from 'react';
-import styles from './styles.module.css';
-import scales from '../PianoRoll/scales.json';
+import React, { useEffect, useState, useRef } from "react";
+import styles from "./styles.module.css";
+import scales from "../PianoRoll/scales.json";
 
 // Note, Octave and Start should be sufficient to identify a Note
 // I'm not concerned with supporting notes that overlap this significantly
 
-export const Note = ({ note, octave, start, duration, height, scale, removeNote, isSelected, select, deselect, velocity }) => {
-  const index = scales[scale].findIndex(item => item.note === note);
+export const Note = ({ id, note, octave, start, duration, height, scale, removeNote, isSelected, select, deselect, velocity }) => {
+  const [clickAction, setClickAction] = useState(false);
+  const [clickStartLocation, setClickStartLocation] = useState({ x: 0, y: 0 });
+  const ref = useRef(null);
+  const index = scales[scale].findIndex((item) => item.note === note);
 
   const remove = (e) => {
     e.stopPropagation();
     removeNote();
-  }
+  };
 
-  const selectDeselect = () => {
-    if (isSelected) {
-      deselect();
-    } else {
-      select();
-    }
-  }
+  // const mouseAction = ({ clientX: x, clientY: y }) => {
+  //   setClickAction(true);
+  //   setClickStartLocation({ x, y });
+
+  //   if (isSelected) {
+  //     deselect();
+  //   } else {
+  //     select();
+  //   }
+  // };
+
+  // const mouseMove = ({ clientX: x, clientY: y }) => {
+  //   if (!clickAction) return;
+
+  //   const threshold = 5;
+  //   console.log("move");
+
+  //   if (Math.abs(clickStartLocation.x - x) > threshold && Math.abs(clickStartLocation.y - y) > threshold) {
+  //     console.log("thres");
+  //   }
+  // };
+
+  // const mouseUp = () => {
+  //   setClickAction(false);
+  // };
+
+  // useEffect(() => {
+  //   const noteRef = ref.current;
+  //   const one = noteRef.parentElement.addEventListener("mousemove", mouseMove);
+  //   const two = noteRef.parentElement.addEventListener("mouseup", mouseUp);
+
+  //   return () => {
+  //     noteRef?.parentElement.removeEventListener("mousemove", one);
+  //     noteRef?.parentElement.removeEventListener("mouseup", two);
+  //   };
+  // }, []);
 
   return (
-    <div className={styles.note} onClick={selectDeselect} style={{ height: height, width: duration * 10, left: start, top: (octave * scales[scale].length * height + index * height) }}>
+    <div
+      data-noteid={id}
+      ref={ref}
+      className={styles.note}
+      // onMouseDown={mouseAction}
+      style={{ height: height - 2, width: duration * 10, left: start, top: octave * scales[scale].length * height + index * height }}
+    >
       {isSelected && <div className={styles.handle} />}
-      <div className={styles.body} onDoubleClick={remove}>{note}{octave}</div>
+      <div className={styles.body} onDoubleClick={remove}>
+        {note}
+        {octave}
+      </div>
       {isSelected && <div className={styles.handle} />}
     </div>
   );
-}
+};

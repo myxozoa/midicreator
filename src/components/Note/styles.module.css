@@ -4,6 +4,7 @@
   position: absolute;
   user-select: none;
   display: flex;
+  border: 1px solid black;
 }
 
 .handle {
