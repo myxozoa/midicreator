@@ -6,9 +6,6 @@ import scales from "../PianoRoll/scales.json";
 // I'm not concerned with supporting notes that overlap this significantly
 
 export const Note = ({ id, note, octave, start, duration, height, scale, removeNote, isSelected, select, deselect, velocity }) => {
-  const [clickAction, setClickAction] = useState(false);
-  const [clickStartLocation, setClickStartLocation] = useState({ x: 0, y: 0 });
-  const ref = useRef(null);
   const index = scales[scale].findIndex((item) => item.note === note);
 
   const remove = (e) => {
@@ -56,7 +53,6 @@ export const Note = ({ id, note, octave, start, duration, height, scale, removeN
   return (
     <div
       data-noteid={id}
-      ref={ref}
       className={styles.note}
       // onMouseDown={mouseAction}
       style={{ height: height - 2, width: duration * 10, left: start, top: octave * scales[scale].length * height + index * height }}

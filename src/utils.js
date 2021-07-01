@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 export const msToPx = () => {};
 
 export const pxToMs = () => {};
@@ -29,3 +31,23 @@ export class KeyPress {
     return this.keys;
   }
 }
+
+export const useMousePosition = (defaultState = { x: 0, y: 0 }) => {
+  const [position, setPosition] = useState(defaultState);
+
+  useEffect(() => {
+    const mouseMove = (event) => {
+      const x = event.clientX;
+      const y = event.clientY;
+
+      setPosition({ x, y });
+    };
+    window.addEventListener("mousemove", mouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMove);
+    };
+  }, []);
+
+  return position;
+};
