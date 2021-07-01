@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { PianoRoll } from "../PianoRoll";
 import { Toolbar } from "../Toolbar";
 import { Note } from "../Note";
-import { KeyPress, useMousePosition } from "../../utils";
+import { KeyPress, useMousePosition, stateRefSync } from "../../utils";
 import styles from "./styles.module.css";
 
 export const Editor = () => {
@@ -21,35 +21,23 @@ export const Editor = () => {
   const [movingNote, setMovingNote] = useState(null);
   const [clickStartLocation, setClickStartLocation] = useState({ x: 0, y: 0 });
 
-  const interactionData = useRef({ scale, notes, selected, clicked, movingNote, clickStartLocation });
+  const interactionData = useRef({ octaves, scale, notes, selected, clicked, movingNote, clickStartLocation, verticalZoom, horizontalZoom });
 
-  const interact = (changeStateFunc, data, ...extra) => {
-    // so i guess this is what people mean by the term 'meta programming'
-    // must be called with the setState function in an object to maintain a reference to its name
-    // using those names to derive the names of the properties
-    // hacky and fragile but its fine for now
-
-    const [functionName, functionItself] = Object.entries(changeStateFunc)[0];
-
-    const _propertyName = functionName.slice(3); // still has an uppercase first letter
-    const propertyName = _propertyName[0].toLowerCase() + _propertyName.slice(1);
-
-    interactionData.current[propertyName] = data;
-
-    functionItself(data, ...extra);
-  };
+  const interact = stateRefSync(interactionData);
 
   const selectDeselectNode = (id) => {
     const selected = interactionData.current.selected;
 
+    const multiSelect = KeyPress.isKeyPressed("Control") || KeyPress.isKeyPressed("Shift");
+
     if (!selected[id]) {
-      if (KeyPress.isKeyPressed("Control") || KeyPress.isKeyPressed("Shift")) {
+      if (multiSelect) {
         interact({ setSelected }, { ...selected, [id]: true });
       } else {
         interact({ setSelected }, { [id]: true });
       }
     } else {
-      if (KeyPress.isKeyPressed("Control") || KeyPress.isKeyPressed("Shift")) {
+      if (multiSelect) {
         interact({ setSelected }, { ...selected, [id]: false });
       } else {
         interact({ setSelected }, {});

@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 export const Row = ({ height, isBlack, octave, note, notes, setNotes, setSelected }) => {
   const row = useRef(null);
 
-  const onClick = (event) => {
+  const addNote = (event) => {
     const rect = row.current.getBoundingClientRect();
     const xOffset = event.clientX - rect.left;
 
@@ -19,7 +19,7 @@ export const Row = ({ height, isBlack, octave, note, notes, setNotes, setSelecte
   };
 
   return (
-    <div onClick={onClick} data-isblack={isBlack} style={{ height }} className={styles.row}>
+    <div onDoubleClick={addNote} data-isblack={isBlack} style={{ height }} className={styles.row}>
       <Key isBlack={isBlack} note={note} octave={octave} />
       <div ref={row} id={note + octave + "sheet"} />
     </div>
