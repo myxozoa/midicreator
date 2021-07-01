@@ -1,8 +1,14 @@
 .key {
+  position: relative;
   user-select: none;
+  color: black;
+  height: 100%;
+  width: 45px;
 }
 
 .noteName {
+  position: relative;
+  left: -40px;
   display: grid;
   place-items: center;
   opacity: 0;
@@ -11,7 +17,7 @@
   transition: 70ms opacity ease-out;
 }
 
-.noteName:hover {
+.noteName[data-shownotename="true"] {
   opacity: 1;
   transition: 70ms opacity ease-in;
 }

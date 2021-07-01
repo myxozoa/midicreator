@@ -2,12 +2,14 @@
   background-color: #a7a7a7;
   display: flex;
   flex-direction: row;
+  transition: 70ms background-color ease-in;
 }
 
 .row[data-isblack="true"] {
   background-color: #979797;
 }
 
-.row:hover {
+.row[data-highlight="true"] {
   background-color: #c0c0c0;
+  transition: 70ms background-color ease-out;
 }

@@ -3,7 +3,7 @@ import { Key } from "../Key";
 import { createNote } from "../../../objects/Note";
 import styles from "./styles.module.css";
 
-export const Row = ({ height, isBlack, octave, note, notes, setNotes, setSelected }) => {
+export const Row = ({ highlight, height, isBlack, octave, note, notes, setNotes, setSelected }) => {
   const row = useRef(null);
 
   const addNote = (event) => {
@@ -19,8 +19,8 @@ export const Row = ({ height, isBlack, octave, note, notes, setNotes, setSelecte
   };
 
   return (
-    <div onDoubleClick={addNote} data-isblack={isBlack} style={{ height }} className={styles.row}>
-      <Key isBlack={isBlack} note={note} octave={octave} />
+    <div onDoubleClick={addNote} data-highlight={highlight} data-isblack={isBlack} style={{ height }} className={styles.row}>
+      <Key show={note === "C" || highlight} isBlack={isBlack} note={note} octave={octave} />
       <div ref={row} id={note + octave + "sheet"} />
     </div>
   );

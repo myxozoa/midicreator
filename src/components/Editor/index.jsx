@@ -3,6 +3,7 @@ import { PianoRoll } from "../PianoRoll";
 import { Toolbar } from "../Toolbar";
 import { Note } from "../Note";
 import { KeyPress, useMousePosition, stateRefSync } from "../../utils";
+import throttle from "lodash.throttle";
 import styles from "./styles.module.css";
 
 export const Editor = () => {
@@ -15,7 +16,7 @@ export const Editor = () => {
   const [scale] = useState("fullOctave");
 
   // Interaction State
-  const mousePosition = useMousePosition();
+  // const mousePosition = useMousePosition();
   const [selected, setSelected] = useState({});
   const [clicked, setClicked] = useState(false);
   const [movingNote, setMovingNote] = useState(null);
@@ -85,7 +86,7 @@ export const Editor = () => {
 
   useEffect(() => {
     const initiateNoteAction = window.addEventListener("mousedown", noteAction);
-    const initiateNoteMove = window.addEventListener("mousemove", noteMove);
+    const initiateNoteMove = window.addEventListener("mousemove", throttle(noteMove, 17));
     const initiateMouseUp = window.addEventListener("mouseup", mouseUp);
 
     return () => {

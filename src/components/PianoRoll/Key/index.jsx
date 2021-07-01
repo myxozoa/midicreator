@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-export const Key = ({ octave, note, isBlack }) => (
-  <div className={styles.key} style={{ color: "grey", background: isBlack ? "black" : "white", height: "100%", width: "50px" }}>
-    <div className={styles.noteName}>
+export const Key = ({ show, octave, note, isBlack }) => (
+  <div className={styles.key} style={{ background: isBlack ? "black" : "white" }}>
+    <div data-shownotename={show} className={styles.noteName}>
       {note}
       {octave}
     </div>
